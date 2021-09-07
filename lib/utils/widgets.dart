@@ -6,7 +6,7 @@ class CircleIndicator extends StatefulWidget {
   final double percent;
   final Nutrients nutrient;
 
-  CircleIndicator({this.percent = 0.5,this.nutrient});
+  CircleIndicator({this.percent = 0.5, required this.nutrient});
   @override
   _CircleIndicatorState createState() => _CircleIndicatorState();
 }
@@ -14,7 +14,7 @@ class CircleIndicator extends StatefulWidget {
 class _CircleIndicatorState extends State<CircleIndicator>
     with SingleTickerProviderStateMixin {
   double fraction = 0.0;
-  Animation<double> animation;
+  late Animation<double> animation;
   @override
   void initState() {
     super.initState();
@@ -43,8 +43,14 @@ class _CircleIndicatorState extends State<CircleIndicator>
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Text(widget.nutrient.name,style: TextStyle(color: Colors.white),),
-                Text(widget.nutrient.weight,style: TextStyle(color: Colors.white),),
+                Text(
+                  widget.nutrient.name,
+                  style: TextStyle(color: Colors.white),
+                ),
+                Text(
+                  widget.nutrient.weight,
+                  style: TextStyle(color: Colors.white),
+                ),
               ],
             ),
           ),
@@ -62,7 +68,7 @@ class _CircleIndicatorState extends State<CircleIndicator>
 }
 
 class CirclePainter extends CustomPainter {
-  Paint _paint;
+  late Paint _paint;
   double _fraction;
 
   CirclePainter(this._fraction) {
